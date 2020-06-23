@@ -82,7 +82,7 @@ Route::get('/admin/pdf/report/{date}','AccountController@genratePdf');
 Route::get('/admin/product/all','ProductController@index');
 
 //POS
-Route::get('/pos','ProductController@pos');
+//Route::get('/pos','ProductController@pos');
 Route::post('/admin/pos/add/product','ProductController@addProduct');
 Route::get('/admin/pos/add/cart','ProductController@cartItem');
 Route::post('/admin/pos/delete','ProductController@deleteItem');

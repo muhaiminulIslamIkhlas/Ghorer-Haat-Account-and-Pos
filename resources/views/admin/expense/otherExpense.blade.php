@@ -2,10 +2,10 @@
 
 @section('body')
 
-   <div class="col-md-8">
-    <div class="bg-white" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;">
-    <div class="text-center bg-danger  text-white"><h4>Other Expenses</h4></div>
+  <div class="col-md-8">
+    <div class="customCard">
+      <div class="container p-4 bg-white">
+    <div class="bg-danger text-center text-white p-2"><h4>Other Expenses</h4></div>
     <form method="post" id="dynamic_form">
         <br />
      <br />
@@ -44,6 +44,7 @@
 
                 </form>
   </div>
+</div>
 </div>
 
 
@@ -93,6 +94,7 @@ $(document).ready(function(){
             data:$(this).serialize(),
             dataType:'json',
             beforeSend:function(){
+              $("#save").prop('disabled', true);
                 $('#save').prop('value','Please wait....');
             },
             success:function(data)
@@ -113,6 +115,7 @@ $(document).ready(function(){
                    // $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
                     $.notify(""+data.success+"", "success");
                 }
+                $("#save").prop('disabled', false);
                 $('#save').prop('value','Insert All Data');
             }
         })

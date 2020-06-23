@@ -123,7 +123,7 @@
             <div class="alert alert-white mt-2 " role="alert">
                 <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Add a customer</button>
             </div>
-            <form id="sellForm">
+            <form id="sellForm" action="{{URL('/admin/pos/sell')}}" method="post">
             @csrf
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Phone no</label>
@@ -473,28 +473,34 @@
                 }
             })
         });
+        // function downloadFile(response) {
+        //     var blob = new Blob([response], {type: 'application/pdf'})
+        //     var url = URL.createObjectURL(blob);
+        //     location.assign(url);
+        // } 
 
         //Sell complete
-        $('#sellForm').submit(function(e) {
+        // $('#sellForm').submit(function(e) {
 
-            e.preventDefault();
-            $.ajax({
-                url:'{{URL('/admin/pos/sell')}}',
-                method:'post',
-                data: $(this).serialize(),
-                dataType:'json',
-                beforeSend:function(){
-                    $("#sell").prop('disabled', true);
+        //     e.preventDefault();
+        //     $.ajax({
+        //         url:'{{URL('/admin/pos/sell')}}',
+        //         method:'post',
+        //         data: $(this).serialize(),
+        //         dataType:'json',
+        //         beforeSend:function(){
+        //             $("#sell").prop('disabled', true);
 
-                },
-                success:function(data)
-                {
-                    $.notify(""+data.success+"", "success");
-                    $('#sellForm').trigger("reset");
-                    $("#sell").prop('disabled', false);
-                }
-            })
-        });
+        //         },
+        //         success:function(data)
+        //         {
+        //             $.notify(""+data.success+"", "success");
+        //             $('#sellForm').trigger("reset");
+        //             $("#sell").prop('disabled', false);
+        //             //.done(downloadFile);
+        //         }
+        //     })
+        // });
 
         //Sell Due calculate
         $('#sellPayment').focusout(function(){

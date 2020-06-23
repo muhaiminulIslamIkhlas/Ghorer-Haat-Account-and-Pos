@@ -30,6 +30,9 @@
         th{
             text-align: left;
         }
+        body {
+    font-family: DejaVu Sans;
+}
     </style>
 
 </head>
@@ -42,7 +45,7 @@
         <span><h4>Ghorer Haat</h4></span>
     </div>
     <div class="date">
-        Date : {{$date}}
+        Date : 
 
     </div>
         <div class="date">
@@ -125,7 +128,7 @@
                         Total
                     </td>
                     <td class="bt">
-                         Taka: {{$total+$processingCost+$deliveryCharge}}
+                         Taka: 
                     </td>
                 </tr>
                 </tbody>

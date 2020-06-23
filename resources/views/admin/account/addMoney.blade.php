@@ -80,6 +80,7 @@
                     data:$(this).serialize(),
                     dataType:'json',
                     beforeSend:function(){
+                        $("#save").prop('disabled', true);
                         $('#save').prop('value','Please wait....');
                     },
                     success:function(data)
@@ -100,6 +101,7 @@
 
                             $.notify(""+data.success+"", "success");
                         }
+                        $("#save").prop('disabled', false);
                         $('#save').prop('value','Save');
                         $('#myForm').trigger("reset");
                     }

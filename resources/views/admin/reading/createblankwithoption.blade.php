@@ -2,8 +2,10 @@
 
 @section('body')
 
-   <div class="col-md-8">
-    <div class="text-center bg-danger"><h4>Online Sell</h4></div>
+  <div class="col-md-12">
+    <div class="customCard">
+      <div class="container p-4 bg-white">
+    <div class="bg-danger text-center text-white p-2"><h4>Online Sell</h4></div>
     <form method="post" id="dynamic_form">
         <br />
      <br />
@@ -20,7 +22,7 @@
                <thead class="bg-danger">
                 <tr>
                     <th width="15%">Order number</th>
-                    <th width="15%">Amount</th>
+                    <th width="15%">Payment</th>
                     <th width="20%">Cash Type</th>
                     <th width="20%">Due</th>
                     <th width="20%">Due Source</th>
@@ -44,6 +46,8 @@
                 </form>
   
 </div>
+</div>
+</div>
 
 
 	
@@ -61,8 +65,8 @@ $(document).ready(function(){
         html += '<td><input type="text" name="order_number[]" class="form-control" /></td>';
         html += '<td><input type="number" min="0" name="amount[]" class="form-control" /></td>';
         html += '<td><select class="form-control" name="cash_type[] "><option value="cash">Cash</option><option value="bkash">Bkash</option></select></td>';
-        html += '<td><input type="number" name="due[]" class="form-control" /></td>';
-        html += '<td><input type="text" name="due_source[]" class="form-control" /></td>';
+        html += '<td><input type="number" name="due[]" value="0" class="form-control" /></td>';
+        html += '<td><input type="text" name="due_source[]" value="not set" class="form-control" /></td>';
         if(number > 1)
         {
             html += '<td><button type="button" name="remove" id="" class="btn rounded-circle remove"><i class="fa fa-trash" style="font-size:24px;color:red"></i></button></td></tr>';
@@ -93,6 +97,7 @@ $(document).ready(function(){
             data:$(this).serialize(),
             dataType:'json',
             beforeSend:function(){
+              $("#save").prop('disabled', true);
                 $('#save').prop('value','Please wait....');
             },
             success:function(data)
@@ -113,6 +118,7 @@ $(document).ready(function(){
                    // $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
                     $.notify(""+data.success+"", "success");
                 }
+                $("#save").prop('disabled', false);
                 $('#save').prop('value','Insert All Data');
             }
         })
