@@ -69,7 +69,7 @@
                     @if($directSellAmount)<span class="square-8 bg-success mg-r-5 rounded-circle"></span>
                     @else
                         <span class="square-8 bg-danger mg-r-5 rounded-circle"></span>
-                    @endif Taka: {{$onlineSellAmount+$onlineSellAmount+$othersIncome}}
+                    @endif Taka: {{$onlineSellAmount+$directSellAmount+$othersIncome}}
                 </td>
             </tr>
             </tbody>

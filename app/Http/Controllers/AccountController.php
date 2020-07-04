@@ -216,6 +216,11 @@ class AccountController extends Controller
             ->where('cash_type',$account)
             ->whereDate('date', '<=', $date)
             ->sum('amount');
+            /**Need to change here**/
+        $duePayment=DB::table('due_payments')
+            ->where('cash_type',$account)
+            ->whereDate('date', '<=', $date)
+            ->sum('amount');
 
         $total=$incomeOnline+$incomeDirect+$incomeOthers+$tableAmount+$duePayment;
     }

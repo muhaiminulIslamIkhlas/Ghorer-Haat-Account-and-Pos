@@ -126,7 +126,7 @@
 
 
                                 $.notify(""+data.success+"", "success");
-                                window.setTimeout(function(){window.location.href="http://localhost/RajuProject/public/admin/index/due";},2000)
+                                window.setTimeout(function(){window.location.href="{{URL('/admin/index/due')}}";},2000)
 
 
 
