@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\officeCost;
+use App\OfficeCost;
 use App\Purchase;
 use App\CompanyPurchase;
 use App\ExpenseOthers;
@@ -14,6 +14,16 @@ class ExpenseController extends Controller
 {
     public function officeCost(){
     	return view('admin.expense.officeCost');
+    }
+
+    public function accountCheck($cashCheck,$bkashCheck){
+    	$cash=app('App\Http\Controllers\AccountController')->TotalIncome('cash')-app('App\Http\Controllers\AccountController')->TotalExpenses('cash');
+    	$bkash=app('App\Http\Controllers\AccountController')->TotalIncome('bkash')-app('App\Http\Controllers\AccountController')->TotalExpenses('bkash');
+    	if($cashCheck > $cash || $bkashCheck > $bkash){
+    		return true;
+    	}else{
+    		return false;
+    	}
     }
 
     public function officeCostSave(Request $request){
@@ -29,7 +39,7 @@ class ExpenseController extends Controller
 		      if($error->fails())
 		      {
 		       return response()->json([
-		        'error'  => $error->errors()->all()
+		        'errors'  => $error->errors()->all()
 		       ]);
 		      }
 		      
@@ -37,11 +47,28 @@ class ExpenseController extends Controller
 		      $reason = $request->reason;
 		      $amount = $request->amount;
 		      $cash_type = $request->cash_type;
+		      $cashCheck=0;
+		      $bkashCheck=0;
+		      for($count = 0; $count < count($reason); $count++){
+		      	if($cash_type[$count]=='cash'){
+		      		$cashCheck = $amount[$count]+$cashCheck;
+		      	}else if($cash_type[$count]=='bkash'){
+		      		$bkashCheck=$amount[$count]+$bkashCheck;
+		      	}
+		      }
+
+		      if($this->accountCheck($cashCheck,$bkashCheck)){
+		      	return response()->json([
+		       'error'  => 'You dont have enough balance.'
+		      ]); 
+		      }
+
+
 		      
 		      
 		      for($count = 0; $count < count($reason); $count++)
 		      {
-			       $data=new officeCost();
+			       $data=new OfficeCost();
 			       $data->date=$date;
 			       $data->amount=$amount[$count];
 			       $data->reason=$reason[$count];
@@ -86,6 +113,22 @@ class ExpenseController extends Controller
 		      $purchaser_name = $request->purchaser_name;
 		      $amount = $request->amount;
 		      $cash_type = $request->cash_type;
+
+		      $cashCheck=0;
+		      $bkashCheck=0;
+		      for($count = 0; $count < count($purchaser_name); $count++){
+		      	if($cash_type[$count]=='cash'){
+		      		$cashCheck = $amount[$count]+$cashCheck;
+		      	}else if($cash_type[$count]=='bkash'){
+		      		$bkashCheck=$amount[$count]+$bkashCheck;
+		      	}
+		      }
+
+		      if($this->accountCheck($cashCheck,$bkashCheck)){
+		      	return response()->json([
+		       'error'  => 'You dont have enough balance.'
+		      ]); 
+		      }
 		      
 		      
 		      for($count = 0; $count < count($purchaser_name); $count++)
@@ -134,6 +177,22 @@ class ExpenseController extends Controller
 		      $company_name = $request->company_name;
 		      $amount = $request->amount;
 		      $cash_type = $request->cash_type;
+
+		      $cashCheck=0;
+		      $bkashCheck=0;
+		      for($count = 0; $count < count($company_name); $count++){
+		      	if($cash_type[$count]=='cash'){
+		      		$cashCheck = $amount[$count]+$cashCheck;
+		      	}else if($cash_type[$count]=='bkash'){
+		      		$bkashCheck=$amount[$count]+$bkashCheck;
+		      	}
+		      }
+
+		      if($this->accountCheck($cashCheck,$bkashCheck)){
+		      	return response()->json([
+		       'error'  => 'You dont have enough balance.'
+		      ]); 
+		      }
 		      
 		      
 		      for($count = 0; $count < count($company_name); $count++)
@@ -180,6 +239,23 @@ class ExpenseController extends Controller
 		      $name = $request->name;
 		      $amount = $request->amount;
 		      $cash_type = $request->cash_type;
+
+
+		      $cashCheck=0;
+		      $bkashCheck=0;
+		      for($count = 0; $count < count($name); $count++){
+		      	if($cash_type[$count]=='cash'){
+		      		$cashCheck = $amount[$count]+$cashCheck;
+		      	}else if($cash_type[$count]=='bkash'){
+		      		$bkashCheck=$amount[$count]+$bkashCheck;
+		      	}
+		      }
+
+		      if($this->accountCheck($cashCheck,$bkashCheck)){
+		      	return response()->json([
+		       'error'  => 'You dont have enough balance.'
+		      ]); 
+		      }
 		      
 		      
 		      for($count = 0; $count < count($name); $count++)

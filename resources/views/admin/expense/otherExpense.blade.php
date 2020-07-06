@@ -102,12 +102,7 @@ $(document).ready(function(){
                 if(data.error)
                 {
 
-                    for(var count = 0; count < data.error.length; count++)
-                    {
-
-                        $.notify(""+data.error[count]+"", "error");
-                    }
-
+                    $.notify(""+data.error+"", "error");
                 }
                 else
                 {

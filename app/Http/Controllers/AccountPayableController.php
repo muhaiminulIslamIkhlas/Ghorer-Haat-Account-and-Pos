@@ -35,10 +35,35 @@ class AccountPayableController extends Controller
         ]);
     }
 
+    public function accountCheck($cashCheck,$cashType){
+        if($cashType=='bkash'){
+            $bkash=app('App\Http\Controllers\AccountController')->TotalIncome('bkash')-app('App\Http\Controllers\AccountController')->TotalExpenses('bkash');
+            if($cashCheck > $bkash){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            $cash=app('App\Http\Controllers\AccountController')->TotalIncome('cash')-app('App\Http\Controllers\AccountController')->TotalExpenses('cash');
+        
+        if($cashCheck > $cash){
+            return true;
+        }else{
+            return false;
+        }
+        }
+
+        
+    }
+
     public function payment(Request $request){
         $dataPayable=AccountPayable::find($request->payable_id);
         if($request->amount>$dataPayable->amount){
             return response()->json(['error'=>'Amount is greater than due']);
+        }
+
+        if($this->accountCheck($request->amount,$request->cash_type)){
+            return response()->json(['error'=>'Not enough balance']);
         }
 
         if($dataPayable->payable_type=='Sort purchase'){

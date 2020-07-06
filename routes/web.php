@@ -98,6 +98,11 @@ Route::get('/Loged_Out','ProductController@logOut');
 
 });
 
+
+//All Listing
+Route::get('/admin/list/otherIncome','ListController@otherIncome');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -208,7 +208,7 @@ class AccountController extends Controller
             ->where('cash_type',$account)
             ->whereDate('date', '<=', $date)
             ->sum('amount');
-        $tableAmount=DB::table('add_money')
+        $addMoney=DB::table('add_money')
             ->where('account_type',$account)
             ->whereDate('date', '<=', $date)
             ->sum('amount');
@@ -216,13 +216,8 @@ class AccountController extends Controller
             ->where('cash_type',$account)
             ->whereDate('date', '<=', $date)
             ->sum('amount');
-            /**Need to change here**/
-        $duePayment=DB::table('due_payments')
-            ->where('cash_type',$account)
-            ->whereDate('date', '<=', $date)
-            ->sum('amount');
 
-        $total=$incomeOnline+$incomeDirect+$incomeOthers+$tableAmount+$duePayment;
+        return $total=$incomeOnline+$incomeDirect+$incomeOthers+$addMoney+$duePayment;
     }
     public function datewiseBank($date){
         $tableAmount=DB::table('add_money')
