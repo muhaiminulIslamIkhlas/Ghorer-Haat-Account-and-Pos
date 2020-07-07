@@ -1,8 +1,8 @@
 @extends('admin.master')
 
 @section('body')
-
-   <div class="col-md-8">
+<div class="row">
+   <div class="col-md-6">
     <div class="customCard">
       <div class="container p-4 bg-white">
     <div class="bg-danger text-center text-white p-2"><h4>Office Cost</h4></div>
@@ -48,11 +48,40 @@
 </div>
 
 
+
+
+<div class="col-md-6">
+    <div class="customCard">
+      <div class="container p-4 bg-white">
+              <table class="table table-bordered table-responsive bg-white" id="myTableId">
+                <thead >
+
+                <tr>
+                    <th scope="col" >Reason</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Cash Type</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead >
+                <tbody id="row">
+
+                </tbody>
+            </table>
+  
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-
+List();
  var count = 1;
 
  dynamic_field(count);
@@ -66,12 +95,12 @@ $(document).ready(function(){
         if(number > 1)
         {
             html += '<td><button type="button" name="remove" id="" class="btn rounded-circle remove"><i class="fa fa-trash" style="font-size:24px;color:red"></i></button></td></tr>';
-            $('tbody').append(html);
+            $('#user_table tbody').append(html);
         }
         else
         {   
             html += '<td><button type="button" name="add" id="add" class="btn rounded-circle"><i class="fa fa-plus" style="font-size:24px;color:red"></i></button></td></tr>';
-            $('tbody').html(html);
+            $('#user_table tbody').html(html);
         }
  }
 
@@ -109,6 +138,7 @@ $(document).ready(function(){
                    // $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
                     $.notify(""+data.success+"", "success");
                 }
+                List();
                 $("#save").prop('disabled', false);
                 $('#save').prop('value','Insert All Data');
             }
@@ -116,6 +146,52 @@ $(document).ready(function(){
  });
 
 });
+
+function List(){
+        console.log('clicked');
+        $.ajax({
+            url:"{{URL('/admin/list/officeCost')}}",
+            method:"get",
+            success:function(data){
+                //$('#add').attr('disabled', false);
+                var tb='<tbody>';
+                $.each(data.incomeOthers, function (index, value) {
+                    var html = '<tr>';
+                    html += '<td>' + value.reason + '</td>';
+                    html += '<td>' + value.date + '</td>';
+                    html += '<td>' + value.cash_type + '</td>';
+                    html += '<td>' + value.amount+'</td>';
+                    html += '<td><a onClick ="Delete(\'' + value.id + '\')" href="#"><i style="font-size:24px" class="fa">&#xf014;</i></a></td></tr>';
+                    tb +=html;
+                    /*$('.cart tr:last').after(html);*/1
+
+                })
+                /*$('#row').replaceWith(tb);*/
+                $('#myTableId tbody').replaceWith(tb);
+
+
+            }
+        })
+    }
+
+        function Delete(rowId){
+        $.ajax({
+            url:'{{URL('/admin/list/officeCost/delete')}}',
+            method:'post',
+            data:{'_token': "{{ csrf_token() }}",'rowId':rowId},
+            dataType:'json',
+            beforeSend:function(){
+
+
+            },
+            success:function(data)
+            {
+                $.notify("Item removed successfully", "success");
+                $('#myTableId tbody > tr').remove();
+                List();
+            }
+        })
+    }
 </script>
 
 @endsection

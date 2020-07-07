@@ -163,21 +163,34 @@ $(document).ready(function(){
                     html += '<td>' + value.Date + '</td>';
                     html += '<td>' + value.cash_type + '</td>';
                     html += '<td>' + value.amount+'</td>';
-                    html += '<td><a onClick ="Delete(\'' + value.rowId + '\')" href="#"><i style="font-size:24px" class="fa">&#xf014;</i></a></td></tr>';
+                    html += '<td><a onClick ="Delete(\'' + value.id + '\')" href="#"><i style="font-size:24px" class="fa">&#xf014;</i></a></td></tr>';
                     tb +=html;
                     /*$('.cart tr:last').after(html);*/1
 
                 })
-                var html = '<tr>';
-                html += '<td style="color: red">Total</td>';
-                html += '<td colspan="2" style="color: red">Items :' +data.count+'</td>';
-                html += '<td style="color: red">' + data.total + '</td></tr>';
-                tb +=html;
                 /*$('#row').replaceWith(tb);*/
                 $('#myTableId tbody').replaceWith(tb);
-                $('#sellTotal').val(data.total);
 
 
+            }
+        })
+    }
+
+        function Delete(rowId){
+        $.ajax({
+            url:'{{URL('/admin/list/otherIncome/delete')}}',
+            method:'post',
+            data:{'_token': "{{ csrf_token() }}",'rowId':rowId},
+            dataType:'json',
+            beforeSend:function(){
+
+
+            },
+            success:function(data)
+            {
+                $.notify("Item removed successfully", "success");
+                $('#myTableId tbody > tr').remove();
+                List();
             }
         })
     }

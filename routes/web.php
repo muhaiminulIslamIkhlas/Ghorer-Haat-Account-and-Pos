@@ -101,7 +101,29 @@ Route::get('/Loged_Out','ProductController@logOut');
 
 //All Listing
 Route::get('/admin/list/otherIncome','ListController@otherIncome');
+Route::post('/admin/list/otherIncome/delete','ListController@otherIncomeDelete');
 
+Route::get('/admin/list/directSell','ListController@directSell');
+Route::post('/admin/list/directSell/delete','ListController@directSellDelete');
+
+Route::get('/admin/list/onlineSell','ListController@onlineSell');
+Route::post('/admin/list/onlineSell/delete','ListController@onlineSellDelete');
+
+
+Route::get('/admin/list/shortPurchase','ListController@shortPurchase');
+Route::post('/admin/list/shortPurchase/delete','ListController@shortPurchaseDelete');
+
+Route::get('/admin/list/otherExpenses','ListController@otherExpenses');
+Route::post('/admin/list/otherExpenses/delete','ListController@otherExpensesDelete');
+
+Route::get('/admin/list/companyPurchase','ListController@companyPurchase');
+Route::post('/admin/list/companyPurchase/delete','ListController@companyPurchaseDelete');
+
+Route::get('/admin/list/officeCost','ListController@officeCost');
+Route::post('/admin/list/officeCost/delete','ListController@officeCostDelete');
+
+
+Route::get('/admin/list/addMoney','ListController@addMoney');
 
 Auth::routes();
 
