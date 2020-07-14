@@ -39,7 +39,7 @@ class ExpenseController extends Controller
 		      if($error->fails())
 		      {
 		       return response()->json([
-		        'errors'  => $error->errors()->all()
+		        'error'  => $error->errors()->all()
 		       ]);
 		      }
 		      

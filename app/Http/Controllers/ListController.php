@@ -75,7 +75,7 @@ class ListController extends Controller
 
     public function otherExpenses(){
       $date=date('Y-m-d');
-      $incomeOthers=DB::table('purchases')
+      $incomeOthers=DB::table('expense_others')
             ->where('date','=',$date)
             ->get();
 
@@ -83,7 +83,7 @@ class ListController extends Controller
     }
 
     public function otherExpensesDelete(Request $request){
-    	DB::table('purchases')->where('id', $request->rowId)->delete();
+    	DB::table('expense_others')->where('id', $request->rowId)->delete();
     	return response()->json([
             'success'=>'Item removed successfully'
         ]);

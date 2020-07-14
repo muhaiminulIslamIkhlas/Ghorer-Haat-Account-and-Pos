@@ -2,10 +2,10 @@
 
 @section('body')
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-7">
     <div class="customCard">
-      <div class="container p-4 bg-white">
-    <div class="bg-danger text-center text-white p-2"><h4>Online Sell</h4></div>
+      <div class="p-2 bg-white">
+    <div class="bg-secondary text-center text-white p-2"><h4>Online Sell</h4></div>
     <form method="post" id="dynamic_form">
         <br />
      <br />
@@ -19,30 +19,23 @@
         </div>
                 
               <table class="table table-responsive" id="user_table">
-               <thead class="bg-danger">
+               <thead class="bg-secondary">
                 <tr>
-                    <th width="15%">Order number</th>
-                    <th width="15%">Payment</th>
+                    <th width="20%">Order number</th>
+                    <th width="20%">Payment</th>
                     <th width="20%">Cash Type</th>
                     <th width="20%">Due</th>
                     <th width="20%">Due Source</th>
-                    <th width="10%">Action</th>
+                    <th width="5%">Action</th>
                 </tr>
                </thead>
                <tbody>
 
                </tbody>
-               <tfoot>
-                <tr>
-                    <td colspan="5" align="right">&nbsp;</td>
-                    <td>
-                  @csrf
-                  <input type="submit" name="save" id="save" class="btn btn-primary" value="Insert All Data" />
-                 </td>
-                </tr>
-               </tfoot>
+               
            </table>
-           
+           @csrf
+                  <input type="submit" name="save" id="save" class="btn btn-primary btn-block" value="Insert All Data" />
                 </form>
   
 </div>
@@ -51,7 +44,7 @@
 
 
 
-  <div class="col-md-6">
+  <div class="col-md-5">
     <div class="customCard">
       <div class="container p-4 bg-white">
               <table class="table table-bordered table-responsive bg-white" id="myTableId">

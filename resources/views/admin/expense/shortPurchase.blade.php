@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-md-6">
     <div class="customCard">
-      <div class="container p-4 bg-white">
-    <div class="bg-danger text-center text-white p-2"><h4>Short Purchase</h4></div>
+      <div class="p-2 bg-white">
+    <div class="bg-secondary text-center text-white p-2"><h4>Short Purchase</h4></div>
     <form method="post" id="dynamic_form">
         <br />
      <br />
@@ -19,7 +19,7 @@
         </div>
                 
               <table class="table table-responsive" id="user_table">
-               <thead class="bg-danger">
+               <thead class="bg-secondary">
                 <tr>
                     <th width="40%">Purchaser Name</th>
                     <th width="25%">Amount</th>
@@ -31,16 +31,10 @@
                <tbody>
 
                </tbody>
-               <tfoot>
-                <tr>
-                    <td colspan="3" align="right">&nbsp;</td>
-                    <td>
-                  @csrf
-                  <input type="submit" name="save" id="save" class="btn btn-primary" value="Insert All Data" />
-                 </td>
-                </tr>
-               </tfoot>
+               
            </table>
+           @csrf
+                  <input type="submit" name="save" id="save" class="btn btn-block btn-primary" value="Insert All Data" />
            
                 </form>
   

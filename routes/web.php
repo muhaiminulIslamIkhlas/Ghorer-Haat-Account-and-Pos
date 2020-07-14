@@ -95,9 +95,10 @@ Route::post('/admin/pos/add/customer','ProductController@addCustomer');
 Route::post('/admin/pos/customer/autocomplete','ProductController@autocomplete');
 
 Route::get('/Loged_Out','ProductController@logOut');
-
+//Rport home page
+Route::get('/report',function(){
+	return view('admin.dashboard.report');
 });
-
 
 //All Listing
 Route::get('/admin/list/otherIncome','ListController@otherIncome');
@@ -125,6 +126,13 @@ Route::post('/admin/list/officeCost/delete','ListController@officeCostDelete');
 
 Route::get('/admin/list/addMoney','ListController@addMoney');
 
+});
+
+
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+
+//

@@ -2,27 +2,28 @@
 
 @section('body')
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-7">
     <div class="customCard">
-      <div class="container p-4 bg-white">
-    <div class="bg-danger text-center text-white p-2"><h4>Other Income</h4></div>
+      <div class="p-2 bg-white">
+    <div class="bg-secondary text-center text-white p-2"><h4>Other Income</h4></div>
     <form method="post" id="dynamic_form">
+        @csrf
         <br />
      <br />
         <div class="form-group">
             <div class="col-md-8">
             <div class="row">
                 <div class="col-md-2 text-right"><strong>Date</strong></div>
-                <div class="col-md-6"><input type="date" name="date" class="form-control"></div>
+                <div class="col-md-6"><input type="date" name="date" class="form-control" required></div>
             </div>
             </div>
         </div>
                 
               <table class="table table-responsive" id="user_table">
-               <thead class="bg-danger">
+               <thead class="bg-secondary">
                 <tr>
-                    <th width="45%">Other Incomes Name</th>
-                    <th width="15%">Amount</th>
+                    <th width="35%">Other Incomes Name</th>
+                    <th width="25%">Amount</th>
                     <th width="20%">Cash Type</th>
  
                     <th width="10%">Action</th>
@@ -31,17 +32,9 @@
                <tbody>
 
                </tbody>
-               <tfoot>
-                <tr>
-                    <td colspan="3" align="right">&nbsp;</td>
-                    <td>
-                  @csrf
-                  <input type="submit" name="save" id="save" class="btn btn-primary" value="Insert All Data" />
-                 </td>
-                </tr>
-               </tfoot>
+               
            </table>
-           
+           <input type="submit" name="save" id="save" class="btn btn-block btn-primary" value="Insert All Data" />
                 </form>
   
 </div>
@@ -49,9 +42,9 @@
 </div>
 
 
-  <div class="col-md-6">
+  <div class="col-md-5">
     <div class="customCard">
-      <div class="container p-4 bg-white">
+      <div class="bg-white">
               <table class="table table-bordered bg-white" id="myTableId">
                 <thead >
 

@@ -8,6 +8,7 @@ use App\WidthdrawMoney;
 use Illuminate\Http\Request;
 use Validator;
 use App\AddMoney;
+use App\ExpenseOthers;
 use DB;
 use PDF;
 
@@ -169,6 +170,15 @@ class AccountController extends Controller
             $data->date = $request->date;
             $data->account_type = "cash";
             $data->save();
+
+            if($request->account_type=='bkash'){
+                $bkashex = new ExpenseOthers();
+                $bkashex->date=$request->date;
+                $bkashex->amount=round($request->amount*.02);
+                $bkashex->name="bkash widthdraw cost";
+                $bkashex->cash_type='cash';
+                $bkashex->save();
+            }
 
 
             return response()->json([
