@@ -28,7 +28,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Ghorer Haat</title>
+    <title>Project 1</title>
 
     <!-- vendor css -->
    {{--  <link href="{{asset('backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -55,7 +55,7 @@
   <body>
 
     <!-- ########## START: LEFT PANEL ########## -->
-    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> Ghorer Haat</a></div>
+    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i>Project 1</a></div>
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -242,7 +242,7 @@
         <nav class="nav">
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name">{{ Auth::user()->name }}</span>
+              <span class="logged-name">Muhaimin</span>
               <img src="../img/img3.jpg" class="wd-32 rounded-circle" alt="">
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-200">

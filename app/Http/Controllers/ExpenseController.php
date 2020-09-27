@@ -42,7 +42,7 @@ class ExpenseController extends Controller
 		        'error'  => $error->errors()->all()
 		       ]);
 		      }
-		      
+
 		      $date = $request->date;
 		      $reason = $request->reason;
 		      $amount = $request->amount;
@@ -60,12 +60,12 @@ class ExpenseController extends Controller
 		      if($this->accountCheck($cashCheck,$bkashCheck)){
 		      	return response()->json([
 		       'error'  => 'You dont have enough balance.'
-		      ]); 
+		      ]);
 		      }
 
 
-		      
-		      
+
+
 		      for($count = 0; $count < count($reason); $count++)
 		      {
 			       $data=new OfficeCost();
@@ -84,7 +84,7 @@ class ExpenseController extends Controller
 		      ]);
 		      /*return redirect('/admin/create/reading');*/
 		     }
-    }	
+    }
 
 
     public function shortPurchase(){
@@ -108,7 +108,7 @@ class ExpenseController extends Controller
 		        'error'  => $error->errors()->all()
 		       ]);
 		      }
-		      
+
 		      $date = $request->date;
 		      $purchaser_name = $request->purchaser_name;
 		      $amount = $request->amount;
@@ -127,10 +127,10 @@ class ExpenseController extends Controller
 		      if($this->accountCheck($cashCheck,$bkashCheck)){
 		      	return response()->json([
 		       'error'  => 'You dont have enough balance.'
-		      ]); 
+		      ]);
 		      }
-		      
-		      
+
+
 		      for($count = 0; $count < count($purchaser_name); $count++)
 		      {
 			       $data=new Purchase();
@@ -172,7 +172,7 @@ class ExpenseController extends Controller
 		        'error'  => $error->errors()->all()
 		       ]);
 		      }
-		      
+
 		      $date = $request->date;
 		      $company_name = $request->company_name;
 		      $amount = $request->amount;
@@ -191,10 +191,10 @@ class ExpenseController extends Controller
 		      if($this->accountCheck($cashCheck,$bkashCheck)){
 		      	return response()->json([
 		       'error'  => 'You dont have enough balance.'
-		      ]); 
+		      ]);
 		      }
-		      
-		      
+
+
 		      for($count = 0; $count < count($company_name); $count++)
 		      {
 			       $data=new CompanyPurchase();
@@ -234,7 +234,7 @@ class ExpenseController extends Controller
 		        'error'  => $error->errors()->all()
 		       ]);
 		      }
-		      
+
 		      $date = $request->date;
 		      $name = $request->name;
 		      $amount = $request->amount;
@@ -254,10 +254,10 @@ class ExpenseController extends Controller
 		      if($this->accountCheck($cashCheck,$bkashCheck)){
 		      	return response()->json([
 		       'error'  => 'You dont have enough balance.'
-		      ]); 
+		      ]);
 		      }
-		      
-		      
+
+
 		      for($count = 0; $count < count($name); $count++)
 		      {
 		         $data=new ExpenseOthers();

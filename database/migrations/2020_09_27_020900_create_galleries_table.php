@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWidthdrawMoneyTable extends Migration
+class CreateGalleriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateWidthdrawMoneyTable extends Migration
      */
     public function up()
     {
-        Schema::create('widthdraw_money', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->decimal('amount', 8, 2);
-            $table->date('date');
-            $table->string('account_type');
+            $table->string('date');
+            $table->string('title')->nullable();
+            $table->text('image');
+            $table->string('section');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateWidthdrawMoneyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('widthdraw_money');
+        Schema::dropIfExists('galleries');
     }
 }

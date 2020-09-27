@@ -8043,7 +8043,7 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 .text-muted {
-  color: #868e96 !important;
+  /*color: #868e96 !important;*/
 }
 
 .text-hide {
@@ -9990,7 +9990,7 @@ textarea.parsley-error:active {
 .table th,
 .table td {
   border-top-color: #fff;
-  color: #737c85;
+  /*color: #737c85;*/
 }
 .table th.valign-middle,
 .table td.valign-middle {

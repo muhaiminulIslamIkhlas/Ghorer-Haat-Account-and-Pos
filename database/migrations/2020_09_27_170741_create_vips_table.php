@@ -4,23 +4,21 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOnlineSalesTable extends Migration
+class CreateVipsTable extends Migration
 {
     /**
      * Run the migrations.
-     *'','','','',''
+     *['','','','']
      * @return void
      */
     public function up()
     {
-        Schema::create('online_sales', function (Blueprint $table) {
+        Schema::create('vips', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('order_number');
-            $table->string('amount');
-            $table->string('cash_type');
-            $table->string('due');
-            $table->string('due_source');
             $table->string('date');
+            $table->string('title');
+            $table->text('image');
+            $table->string('expiry');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateOnlineSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('online_sales');
+        Schema::dropIfExists('vips');
     }
 }

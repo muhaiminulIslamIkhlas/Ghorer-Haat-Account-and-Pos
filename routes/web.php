@@ -13,9 +13,18 @@ use RealRashid\SweetAlert\Facades\Alert;
 |
 */
 //Front page
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/','AccountController@dashboard');
+Route::get('/',function(){
+	return view('admin.dashboard.index');
+});
+
+//Gallery
+Route::get('/ajax_upload', 'GalleryController@index');
+
+Route::post('/ajax_upload/action', 'GalleryController@action')->name('ajaxupload.action');
+
+
 //Route::get('/','AccountController@dashboard')->middleware('other');
 
 
@@ -126,7 +135,7 @@ Route::post('/admin/list/officeCost/delete','ListController@officeCostDelete');
 
 Route::get('/admin/list/addMoney','ListController@addMoney');
 
-});
+// });
 
 
 
